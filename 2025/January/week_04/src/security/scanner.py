@@ -1,12 +1,9 @@
+from typing import List, Pattern
+import re
+
 class SecurityScanner:
     def __init__(self):
-        self.vulnerability_patterns = self.load_patterns()
-        
+        self.vulnerability_patterns: List[Pattern] = []
+    
     def scan(self, code: str) -> bool:
-        for pattern in self.vulnerability_patterns:
-            if pattern.match(code):
-                return False
-        return True
-        
-    def load_patterns(self):
-        return []
+        return all(not pattern.search(code) for pattern in self.vulnerability_patterns)
