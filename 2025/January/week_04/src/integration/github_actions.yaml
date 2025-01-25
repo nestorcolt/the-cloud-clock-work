@@ -1,9 +1,0 @@
-name: AI-Assisted CI/CD
-on: [push]
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: AI Code Review
-        uses: github/codeql-action/analyze@v2
