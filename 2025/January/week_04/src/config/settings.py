@@ -1,15 +1,15 @@
 from typing import Dict
-import json
 import os
+from dotenv import load_dotenv
 
 class Settings:
     def __init__(self):
-        self.config: Dict = self._load_config()
-        
-    def _load_config(self) -> Dict:
-        config_path = os.path.join(os.path.dirname(__file__), 'config.json')
-        with open(config_path, 'r') as f:
-            return json.load(f)
-            
-    def get(self, key: str, default=None):
-        return self.config.get(key, default)
+        load_dotenv()
+        self.config = self._load_configuration()
+    
+    def _load_configuration(self) -> Dict[str, str]:
+        return {
+            "API_KEY": os.getenv("API_KEY", ""),
+            "DATABASE_URL": os.getenv("DATABASE_URL", ""),
+            "ENVIRONMENT": os.getenv("ENVIRONMENT", "development")
+        }

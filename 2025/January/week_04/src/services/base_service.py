@@ -1,8 +1,7 @@
-from typing import Dict, Any
+from abc import ABC, abstractmethod
+from typing import Any
 
-class BaseService:
-    def __init__(self, config: Dict[str, Any]):
-        self.config = config
-
-    def initialize(self) -> None:
+class BaseService(ABC):
+    @abstractmethod
+    def process(self) -> Any:
         pass

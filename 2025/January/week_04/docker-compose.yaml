@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    volumes:
+      - .:/app
+    environment:
+      - API_KEY=${API_KEY}
+      - DATABASE_URL=${DATABASE_URL}
