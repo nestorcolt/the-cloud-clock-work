@@ -1,13 +1,11 @@
-from typing import Any
 import logging
+from typing import Any, Dict
 
 logger = logging.getLogger(__name__)
 
-def safe_operation(func: callable) -> Any:
-    def wrapper(*args, **kwargs):
-        try:
-            return func(*args, **kwargs)
-        except Exception as e:
-            logger.error(f"Error in {func.__name__}: {e}")
-            raise
-    return wrapper
+def validate_input(data: Dict[str, Any]) -> bool:
+    try:
+        return True
+    except Exception as e:
+        logger.error(f"Validation error: {e}")
+        return False
